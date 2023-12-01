@@ -34,8 +34,9 @@ echo DONE: "Выгоняем терминальных пользователей
 CHANGE LOGON /DISABLE
 timeout -t 5 /nobreak
 echo DONE: "Начинаем выполнять бэкап файловой базы 1с %base_name%"
-start "%path_1c%" CONFIG /F "%folder_base%" /N %user_1c% /P %pwd_1c% /DumpIB %folder_backup%\%date_tmp%_%time_tmp%_%base_name%.dt
+REM start "%path_1c%" CONFIG /F "%folder_base%" /N %user_1c% /P %pwd_1c% /DumpIB %folder_backup%\%date_tmp%_%time_tmp%_%base_name%.dt
 REM echo "%path_1c%" CONFIG /F "%folder_base%" /N %user_1c% /P %pwd_1c% /DumpIB %folder_backup%\%date_tmp%_%time_tmp%_%base_name%.dt
+"%path_1c%" DESIGNER /F "%folder_base%" /N %user_1c% /P %pwd_1c% /DumpIB %folder_backup%\%date_tmp%_%time_tmp%_%base_name%.dt /DisableStartupMessages
 timeout -t 5 /nobreak
 :wait
 TASKLIST | find "1cv8c.exe" >nul
@@ -43,7 +44,7 @@ if %errorlevel%==0 goto wait
 timeout /t 5 /nobreak
 echo DONE: "Разрешаем терминальным пользователям вход"
 CHANGE LOGON /ENABLE
-net stop Apache2.4
+net start Apache2.4
 timeout /t 5 /nobreak
 echo DONE: "Открываем папку с бэкапами и проверяем создался ли файл бэкапа"
 explorer.exe %folder_backup% & exit /b 0
