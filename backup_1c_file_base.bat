@@ -16,8 +16,6 @@ if not exist %SETTINGSFILE% (
 )
 for /f "eol=# delims== tokens=1,2" %%i in (%SETTINGSFILE%) do (
     set %%i=%%j
-    rem echo %%j
-    rem  timeout -t 1 /nobreak
 )
 set folder_base=%folder%
 set user_1c=%user_1c%
@@ -45,6 +43,6 @@ timeout /t 5 /nobreak
 echo DONE: "Разрешаем терминальным пользователям вход"
 CHANGE LOGON /ENABLE
 net start Apache2.4
-timeout /t 5 /nobreak
+timeout /t 50 /nobreak
 echo DONE: "Открываем папку с бэкапами и проверяем создался ли файл бэкапа"
 explorer.exe %folder_backup% & exit /b 0
