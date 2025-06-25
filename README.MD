@@ -1,6 +1,5 @@
 # 1C Backup Script
 
-![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)
 ![License](https://img.shields.io/github/license/JunDevPy/backup_1c_script)
 
 ## Описание
